@@ -237,7 +237,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[This project taught me how a Java program can use a thread to represent each process. The work begins using start() instead of calling run() directly, which would only run on the main thread, and the Process class implements Runnable, so I can pass it to new Thread(process). I discovered that Thread.join() allows only one process to operate at a time, such as a single CPU, by making the main scheduler thread wait until the current thread completes its quantum. In my code, each quantum is divided into five sleep steps to update the progress bar, and Thread.sleep() simulates CPU activity. Every time a process is re-queued, addProcessToQueue() creates a new Thread because a thread cannot be launched twice. What caught me off guard.]
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -245,7 +245,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[The most challenging part was the garbled characters in the terminal. When I first ran the program, the boxes and progress bars appeared as strange symbols like ظـ¤, so I could not read the Ready Queue. It was hard because the code compiled and ran with no error message pointing to the problem. I later understood that the file contains UTF-8 characters, while my Windows terminal decoded them with a different code page. The logic was correct and only the display was wrong, which made it confusing. It taught me that output encoding is part of making a program work..]
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -253,7 +253,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[By taking modest steps and testing after every modification, I was able to overcome the difficulties. I reviewed the error line and compared my file with a functional reference version when a compile error occurred following the addition of the priority code. I was able to quickly identify errors by adding each feature separately and compiling before proceeding. I changed the terminal to UTF-8 for the jumbled characters and restarted the application till the symbols appeared correctly. I always had a working version to go back to because I committed after every feature. I sought assistance when I was stuck and made sure I understood the solution before implementing it.]
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
 
@@ -261,7 +261,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[Many of the programs I use on a regular basis involve multithreading. A slow download does not cause the website I'm viewing to freeze because each tab or download in a web browser can execute in its own thread. Similar to how the CPU switches from P1 to P2 after each quantum in my output, one thread in a music player plays audio while another maintains interface responsiveness. Similar to P3 ending before P7, a web server can handle each request in a distinct thread, preventing a huge request from blocking smaller ones. In each of these scenarios, join() is awaiting a worker's outcome, a thread is a task, and the quantum is its time slice.]
 
 ### Optional: What would you like to learn more about?
 
