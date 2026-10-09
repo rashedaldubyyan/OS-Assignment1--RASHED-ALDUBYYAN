@@ -129,69 +129,87 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [October 7, 2026, 1;30 PM]
+**What I did**: Started the assignment, set my student ID, and read and ran the starter code.
 
 **Details**:
+- Set `studentID = 445050049` on line 150 of `SchedulerSimulation.java`
+- Read the whole code: `Process`, `run()`, `runToCompletion()`, `addProcessToQueue()`, `start()`, `join()` and `sleep()`
+- Ran the program: it generated 14 processes with a time quantum of 3000ms
+- Checked the output, for example P3 (1977ms) finished in its first turn and P7 (7435ms) needed three turns
+- Committed and pushed: `Set personal student ID to seed the simulation`
 
-**Challenges**:
+**Challenges**: The boxes, arrows and progress bars appeared as garbled symbols in the Windows terminal, so the output was hard to read.
 
-**Solution**:
+**Solution**: I found that the terminal was not decoding the UTF-8 characters correctly, so I switched the terminal to UTF-8 (`chcp 65001`) and ran the program again.
 
-**Time spent**:
+**Time spent**: About  26 min
+---
+
+### Entry 2 - [October 7, 2026, 2;16 PM]
+*What I did**: Implemented Feature 1: Process Priority.
+
+**Details**:
+- Added a `priority` field with a getter and setter in the `Process` class
+- Added a separate `Random priorityRandom = new Random(studentID)` so the burst times did not change
+- Assigned a priority from 1 to 10 to each process inside the `for` loop
+- Printed the priority in `addProcessToQueue()` when a process enters the ready queue
+- Committed and pushed: `Feature 1: Add random process priority (1-10) shown when a process enters the ready queue`
+
+**Challenges**: I got a compile error when I added the priority line near the process creation in the `for` loop.
+
+**Solution**: I read the error line and compared my file with a working reference version. The line has to be inside the loop, after `Process process = new Process(...)`, and the getter, setter and `priorityRandom` declaration also had to be added before it could compile.
+
+**Time spent**: About 18 min
 
 ---
 
-### Entry 2 - [Date and Time]
-**What I did**:
+### Entry 3 - [[October 7, 2026, 2:50 PM]]
+**What I did**: Implemented Feature 2: Context Switch Counter.
 
 **Details**:
+- Added a `private static int contextSwitchCount` in `SchedulerSimulation`
+- Incremented it before `currentThread.start()`, because each start gives the CPU to a process
+- Printed the total after the "ALL PROCESSES COMPLETED" banner
+- Checked the total against my output by counting each time a process ran a quantum (29 in my original run)
+- Committed and pushed: `Feature 2: Add static context switch counter and print the total at the end`
 
-**Challenges**:
+**Challenges**:  No major challenges in this session.]
 
 **Solution**:
 
-**Time spent**:
+**Time spent**: About 45 minutes
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 4 - [[October 7, 2026, 3:40 PM]]
+**What I did**: Implemented Feature 3: Waiting Time Tracking.
 
 **Details**:
+- Added `arrivalTime` and `finishTime` fields to `Process`, recorded with `System.currentTimeMillis()`
+- Calculated Turnaround Time = Finish Time - Arrival Time, and Waiting Time = Turnaround Time - Burst Time
+- Added a `completedProcesses` list and printed a final statistics table with the average waiting and turnaround time
+- Compiled and ran the program to check the numbers (Turnaround = Waiting + Burst)
+- Committed and pushed: `Feature 3: Track waiting and turnaround time with currentTimeMillis and print the final table`
 
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
+**Time spent**: About 33 min
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**:
+### Entry 5 - [October 7, 2026, 5;20 PM]
+**What I did**: Wrote the documentation (reflection and technical answers) and prepared for the video.
 
 **Details**:
+- Re-ran the program and used my own output for the technical answers (P7 was re-queued twice, and I followed P1 through the thread states)
+- Wrote the 4 reflection questions (5-7 sentences each) and the 4 technical answers
+- Checked that each answer stays within the required sentence and word limits
+- Committed and pushed: `Docs: Completed reflection and technical answers`
 
-**Challenges**:
+**Challenges**: It was hard to explain the thread states clearly, especially which thread is Waiting. The main thread waits at `join()`, while P1's thread sleeps in `Thread.sleep()`.
 
-**Solution**:
+**Solution**: I traced the code line by line and wrote down which thread runs each call, then wrote one short explanation per state.
 
-**Time spent**:
-
----
-
-### Entry 5 - [Date and Time]
-**What I did**:
-
-**Details**:
-
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
-
+**Time spent**: About 1.5 hours
 ---
 
 ### Entry 6 - [Optional - Date and Time]
@@ -211,13 +229,13 @@
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: [7 hours]
 
-**Most challenging part**:
+**Most challenging part**:Understanding the thread states and fixing the garbled characters in the terminal.
 
-**Most interesting learning**:
+**Most interesting learning**:A thread cannot be started twice, so the program creates a new `Thread` every time a process is re-queued (P7 used three thread objects).
 
-**What I would do differently next time**:
+**What I would do differently next time**:I would start earlier, set the terminal encoding to UTF-8 at the beginning, and spread my commits over more days.
 
 ---
 
